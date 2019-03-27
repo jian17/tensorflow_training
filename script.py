@@ -9,5 +9,5 @@ train_data_directory = os.path.join(ROOT_PATH, "Training")
 test_data_directory = os.path.join(ROOT_PATH, "Testing")
 
 images, labels = load_data(train_data_directory)
-plt.hist(labels, 62)
-plt.show()
+
+show_random_image(images, labels)
