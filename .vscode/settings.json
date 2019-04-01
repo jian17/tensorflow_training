@@ -1,5 +1,11 @@
 {
-    "python.pythonPath": "C:\\Users\\MSI-PC\\Anaconda3\\python.exe",
+    "python.pythonPath": "C:\\Users\\MSI-PC\\Anaconda3\\envs\\for_ml\\python.exe",
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
-    "terminal.integrated.shellArgs.windows": ["/K","C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"]
+    "terminal.integrated.shellArgs.windows": [
+        "/K",
+        "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat for_ml"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.jediEnabled": false
 }

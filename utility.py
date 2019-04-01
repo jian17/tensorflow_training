@@ -35,3 +35,9 @@ def show_random_image(images, labels):
         plt.imshow(image)
         
     plt.show()
+
+def preprocess_data(images, size=32):
+    images_resized = [skimage.transform.resize(image, (size, size)) for image in images]
+    images_gray = [skimage.color.rgb2gray(image) for image in images_resized]
+    return np.array(images_gray)
+
