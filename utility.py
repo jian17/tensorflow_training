@@ -2,6 +2,8 @@ import os
 import skimage
 import numpy as np
 import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow import keras
 
 def load_data(data_directory):
     directories = [d for d in os.listdir(data_directory)
@@ -13,7 +15,7 @@ def load_data(data_directory):
         label_directory = os.path.join(data_directory, d)
         filenames = [os.path.join(label_directory, f)
                      for f in os.listdir(label_directory)
-                     if f.endswith(".ppm")]
+                     if f.endswith(".png")]
         for f in filenames:
             images.append(skimage.io.imread(f))
             labels.append(int(d))
@@ -38,6 +40,16 @@ def show_random_image(images, labels):
 
 def preprocess_data(images, size=32):
     images_resized = [skimage.transform.resize(image, (size, size)) for image in images]
-    images_gray = [skimage.color.rgb2gray(image) for image in images_resized]
-    return np.array(images_gray)
+    #images_gray = [skimage.color.rgb2gray(image) for image in images_resized]
+    return np.array(images_resized)
 
+def get_default_model():
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.Flatten(input_shape=(32,32)))
+    model.add(tf.keras.layers.Dense(64, activation="relu"))
+    model.add(tf.keras.layers.Dense(64, activation="relu"))
+    model.add(tf.keras.layers.Dense(62, activation="softmax"))
+    model.compile(optimizer='adam', 
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy'])
+    return model
